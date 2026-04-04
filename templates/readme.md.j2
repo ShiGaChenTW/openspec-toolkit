@@ -1,0 +1,47 @@
+# {{ project_name }}
+
+This repository uses the **OpenSpec + Superpowers + GSD** integrated architecture.
+
+## Purpose
+
+- **Project:** {{ project_name }}
+- **Target user:** {{ target_user }}
+- **Main problem:** {{ user_problem }}
+
+## Architecture
+
+```
+Layer 5  Superpowers + GSD  --> Engineering discipline + execution orchestration
+Layer 4  OpenSpec CLI        --> Spec automation (optional)
+Layer 3  changes/            --> Change packages (proposal/design/tasks)
+Layer 2  specs/              --> Long-lived living specs
+Layer 1  repo + git          --> Foundation
+```
+
+## Project Structure
+
+```
+{{ project_name }}/
+├── README.md
+├── AGENTS.md                         <-- AI agent rules
+├── docs/
+│   ├── engineering-principles.md     <-- Definition of Done & standards
+│   └── superpowers.md                <-- Superpowers + GSD guide
+├── openspec/
+│   ├── specs/                        <-- Living specs by capability
+│   └── changes/                      <-- Change packages
+└── .planning/
+    ├── PROJECT.md                    <-- GSD project context
+    ├── ROADMAP.md                    <-- Phase-based execution plan
+    └── STATE.md                      <-- Current progress tracking
+```
+
+## Workflow
+
+1. Check `.planning/ROADMAP.md` for current phase
+2. Read `openspec/changes/<change-id>/proposal.md`
+3. Draft `design.md` and `tasks.md`
+4. Implement one task at a time (TDD)
+5. Update specs after behavior changes
+6. Update `.planning/STATE.md` on phase completion
+7. Open PR — review spec first, code second

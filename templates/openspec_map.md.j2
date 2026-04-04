@@ -1,0 +1,41 @@
+# OpenSpec Project Map
+
+## Directory Tree & Annotations
+
+```
+{{ project_name }}/
+├── README.md
+├── AGENTS.md
+├── .gitignore
+├── .openspec-map.md          # 本檔案 — 空間索引
+├── docs/
+│   ├── engineering-principles.md
+{% if enable_superpowers %}│   └── superpowers.md
+{% endif %}├── openspec/
+│   ├── README.md
+│   ├── specs/
+{% for cap in capabilities %}│   │   └── {{ cap }}/spec.md    # [Capability: {{ cap }}]
+{% endfor %}│   └── changes/
+│       └── {{ change_id }}/
+│           ├── proposal.md
+│           ├── design.md
+│           ├── tasks.md
+│           └── spec_delta.md
+{% if enable_superpowers %}└── .planning/
+    ├── PROJECT.md
+    ├── ROADMAP.md
+    └── STATE.md
+{% endif %}```
+
+## Capability Registry
+
+| Capability | Spec Path | Status |
+|------------|-----------|--------|
+{% for cap in capabilities %}| {{ cap }} | `openspec/specs/{{ cap }}/spec.md` | Active |
+{% endfor %}
+
+## Active Changes
+
+| Change ID | Capability | Status | Last Update |
+|-----------|------------|--------|-------------|
+| {{ change_id }} | {{ first_change_capability }} | In Progress | {{ today }} |

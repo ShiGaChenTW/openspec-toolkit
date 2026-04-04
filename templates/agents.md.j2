@@ -1,0 +1,36 @@
+# Agent Rules
+
+Always work from repo files, not chat memory.
+
+## Read first
+- `docs/engineering-principles.md`
+- relevant files in `openspec/specs/`
+- active change folder in `openspec/changes/<change-id>/`
+- `.planning/STATE.md` for current phase context
+- `.planning/ROADMAP.md` for overall project plan
+
+## Workflow
+
+### Starting a new change (GSD + OpenSpec)
+1. Check `.planning/ROADMAP.md` for the current phase
+2. Read the corresponding `openspec/changes/<change-id>/proposal.md`
+3. Use Superpowers **brainstorming** skill if scope is unclear
+4. Use Superpowers **writing-plans** skill to draft design.md + tasks.md
+5. Implement one task at a time using **TDD** skill
+6. After each task, update `tasks.md` and `.planning/STATE.md`
+7. When change is complete, update spec delta and living spec
+8. Use **requesting-code-review** skill before finishing
+
+### Rules
+- Never code before reading proposal, design, and tasks
+- Implement only one unchecked task at a time
+- Keep diffs small
+- Add or update tests
+- Update `tasks.md` after each completed step
+- If behavior changes, update spec delta and long-lived spec
+- Update `.planning/STATE.md` when phase status changes
+
+## Output style
+- Be concise
+- State assumptions clearly
+- Flag scope drift before coding

@@ -1,0 +1,49 @@
+# Superpowers + GSD Integration
+
+This project uses **Superpowers** for engineering discipline and **GSD (Get Stuff Done)** for phase-based execution orchestration.
+
+## Superpowers Skills
+
+| Skill | When | Purpose |
+|-------|------|---------|
+| brainstorming | Before any creative work | Explore options before committing |
+| writing-plans | Before implementation | Create step-by-step plan |
+| test-driven-development | During implementation | Write tests first, then code |
+| requesting-code-review | After completing tasks | Verify quality and correctness |
+| verification-before-completion | Before merge | Final check before shipping |
+| finishing-a-development-branch | Branch complete | Guide merge/PR process |
+
+## GSD Workflow
+
+Each OpenSpec **change** maps to a GSD **phase**:
+
+```
+/gsd:plan-phase N    -->  openspec/changes/<change-id>/
+  discuss-phase      -->  proposal.md  (Why / Who / What)
+  plan-phase         -->  design.md + tasks.md  (How)
+  execute-phase      -->  Implementation
+  verify             -->  spec delta --> living spec
+```
+
+### Key GSD Commands
+
+| Command | Maps to | Purpose |
+|---------|---------|---------|
+| `/gsd:progress` | — | Check current phase status |
+| `/gsd:plan-phase N` | design.md + tasks.md | Create execution plan |
+| `/gsd:execute-phase N` | Implementation | Execute with atomic commits |
+| `/gsd:next` | — | Auto-advance to next step |
+
+## File Locations
+
+- **Superpowers skills:** Installed in your AI agent (Claude Code, Cursor, etc.)
+- **GSD state:** `.planning/STATE.md`
+- **GSD roadmap:** `.planning/ROADMAP.md`
+- **OpenSpec specs:** `openspec/specs/`
+- **OpenSpec changes:** `openspec/changes/`
+
+## Setup
+
+1. Install Superpowers in your agent
+2. GSD commands are available via Superpowers skill system
+3. Skills activate automatically based on context
