@@ -633,6 +633,8 @@ def main() -> None:
             feature_why=args.feature_why,
         )
         print(f"\n全部完成！Change Package created at: {result}")
+        if not args.non_interactive:
+            post_generate_prompt(Path(target))
         return
 
     # ── Mode: --non-interactive (greenfield or brownfield) ──
@@ -665,6 +667,41 @@ def main() -> None:
     repo_root = generate_repo(answers, brownfield=args.brownfield)
     mode = "Brownfield 導入" if args.brownfield else "Repo created"
     print(f"\n全部完成！{mode} at: {repo_root}")
+
+    if not args.non_interactive:
+        post_generate_prompt(repo_root)
+
+
+def post_generate_prompt(repo_root: Path) -> None:
+    """Ask user what to do next: open in IDE or stay in terminal."""
+    print("\n" + "─" * 50)
+    print("下一步？\n")
+    print("  1) 用 VS Code 開啟專案")
+    print("  2) 用 Cursor 開啟專案")
+    print("  3) 進入專案目錄（Terminal）")
+    print("  4) 結束")
+    print()
+
+    try:
+        choice = input("請選擇 [1/2/3/4]（預設 3）：").strip() or "3"
+    except (EOFError, KeyboardInterrupt):
+        print()
+        return
+
+    if choice == "1":
+        print(f"\n開啟 VS Code → {repo_root}")
+        subprocess.run(["code", str(repo_root)])
+    elif choice == "2":
+        print(f"\n開啟 Cursor → {repo_root}")
+        subprocess.run(["cursor", str(repo_root)])
+    elif choice == "3":
+        print(f"\n請執行以下指令進入專案目錄：")
+        print(f"  cd {repo_root}")
+    elif choice == "4":
+        print("\n再見！")
+    else:
+        print(f"\n無法辨識的選項。請執行以下指令進入專案目錄：")
+        print(f"  cd {repo_root}")
 
 
 if __name__ == "__main__":
