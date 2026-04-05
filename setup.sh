@@ -5,7 +5,7 @@
 # 一鍵完成：環境檢查 → 安裝依賴 → 安裝 Skills & Hook → 啟動 Generator
 # =============================================================================
 
-set -euo pipefail
+set -eo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CLAUDE_DIR="$HOME/.claude"
